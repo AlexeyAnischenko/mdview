@@ -17,7 +17,8 @@ Libraries are stored gzipped + base64 and unpacked in the browser with `Decompre
 Mermaid, KaTeX (code and fonts) and PlantUML are only unpacked when a document uses them, so plain
 documents open as fast as with a small file. `node build.mjs --no-plantuml` builds a 1.6 MB version
 without PlantUML. PlantUML `!include <stdlib>` bundles (C4, AWS, …) are fetched from
-plantuml.github.io when a diagram uses one; nothing else goes over the network.
+plantuml.github.io when a diagram uses one; apart from that, mdview itself makes no network requests
+(the document's own images and links load as usual).
 
 ## Opening a file
 
@@ -70,5 +71,5 @@ same text in `mdview.html`. `test/` holds a sample document that exercises every
 
 mdview.html bundles marked, marked-footnote, DOMPurify, highlight.js, KaTeX, Mermaid,
 github-markdown-css and PlantUML (`@plantuml/core`, with Viz.js, Graphviz and Expat). All are MIT,
-BSD-3-Clause or MPL-2.0/Apache-2.0, except Graphviz (EPL-2.0, object code; source at
-https://gitlab.com/graphviz/graphviz). Full texts: [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md).
+BSD-3-Clause or MPL-2.0/Apache-2.0, except Graphviz 14.1.1 (EPL-2.0, object code; source at
+https://gitlab.com/graphviz/graphviz/-/tree/14.1.1). Full texts: [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md).

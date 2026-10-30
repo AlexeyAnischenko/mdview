@@ -46,14 +46,14 @@ const NOTICES = [
   ['github-markdown-css', LIBS['gh-css'], 'MIT', 'github-markdown-css@5.8.1/license'],
   ['PlantUML (@plantuml/core, incl. themes)', LIBS.plantuml, 'MIT', `${PLANTUML}/LICENSE`, true],
   ['Viz.js 3.24.0 (in @plantuml/core viz-global.js)', LIBS['plantuml-viz'], 'MIT', 'https://raw.githubusercontent.com/mdaines/viz-js/v3/LICENSE', true],
-  ['Graphviz (object code inside Viz.js)', 'source: https://gitlab.com/graphviz/graphviz', 'EPL-2.0', 'https://gitlab.com/graphviz/graphviz/-/raw/main/LICENSE', true],
+  ['Graphviz 14.1.1 (object code inside Viz.js)', 'source: https://gitlab.com/graphviz/graphviz/-/tree/14.1.1', 'EPL-2.0', 'https://gitlab.com/graphviz/graphviz/-/raw/14.1.1/LICENSE', true],
   ['Expat (object code inside Viz.js)', 'source: https://github.com/libexpat/libexpat', 'MIT', 'https://raw.githubusercontent.com/libexpat/libexpat/master/expat/COPYING', true],
 ];
 
 async function notices() {
   let out = '# Third-party notices\n\nmdview.html bundles the following software. Each component keeps its own license; the\n' +
     'full texts follow. Graphviz is distributed in object code form under the Eclipse Public License 2.0;\n' +
-    'its source code is available at https://gitlab.com/graphviz/graphviz.\n';
+    'its source code is available at https://gitlab.com/graphviz/graphviz/-/tree/14.1.1.\n';
   for (const [name, spec, license, licenseFile, plantumlOnly] of NOTICES) {
     if (plantumlOnly && !WITH_PLANTUML) continue;
     out += `\n---\n\n## ${name}\n\n${spec} — ${license}\n\n\`\`\`\n${(await get(licenseFile)).trim()}\n\`\`\`\n`;
