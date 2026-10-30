@@ -1512,7 +1512,8 @@ const setupMarked = () => marked.use({ gfm: true }, markedFootnote(), mathExtens
     heading({ tokens, depth }) {
       const inner = this.parser.parseInline(tokens);
       const id = slugify(plain(inner));
-      return `<h${depth} id="${esc(id)}"><a class="anchor" href="#${esc(id)}" aria-hidden="true">#</a>${inner}</h${depth}>\n`;
+      // id is applied after sanitizing: DOMPurify drops ids like "images" or "title" (DOM clobbering guard)
+      return `<h${depth} data-heading-id="${esc(id)}"><a class="anchor" href="#${esc(id)}" aria-hidden="true">#</a>${inner}</h${depth}>\n`;
     },
     code({ text, lang }) {
       const l = (lang || '').match(/^\S*/)[0].toLowerCase();
@@ -1557,6 +1558,10 @@ async function render(text, keepScroll) {
   slugs = new Map();
   const html = front + marked.parse(md);
   doc.innerHTML = DOMPurify.sanitize(html, { ADD_ATTR: ['target'] });
+  for (const h of doc.querySelectorAll(':is(h1, h2, h3, h4, h5, h6)[data-heading-id]')) {
+    h.id = h.dataset.headingId;
+    h.removeAttribute('data-heading-id');
+  }
   msg.innerHTML = '';
   doc.hidden = false;
 
@@ -1703,7 +1708,10 @@ function buildToc() {
 }
 function markActive() {
   let current = tocLinks[0];
-  for (const pair of tocLinks) if (pair[1] && pair[1].getBoundingClientRect().top < 80) current = pair;
+  // at the very bottom the last sections can't reach the top, so take the last heading on screen
+  const atBottom = innerHeight + scrollY >= document.documentElement.scrollHeight - 2;
+  const limit = atBottom ? innerHeight : 80;
+  for (const pair of tocLinks) if (pair[1] && pair[1].getBoundingClientRect().top < limit) current = pair;
   for (const [a] of tocLinks) a.classList.toggle('active', current && a === current[0]);
 }
 addEventListener('scroll', () => requestAnimationFrame(markActive), { passive: true });

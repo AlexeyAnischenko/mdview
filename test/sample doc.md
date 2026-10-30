@@ -71,9 +71,17 @@ Loader <|-- FileLoader
 > [!WARNING]
 > Careful here.
 
-## Image
+## Images
 
-![relative image](sub/pic%20one.png)
+Images are loaded relative to the Markdown file — here from a subfolder, with spaces in the names.
+
+Vector (SVG), Markdown syntax with a hover title:
+
+![How mdview works](sub/how%20it%20works.svg "Markdown in, rendered page out")
+
+Raster (PNG), an HTML `<img>` tag with a width — a Mandelbrot set, seahorse valley:
+
+<img src="sub/mandelbrot%20set.png" alt="Mandelbrot set, seahorse valley" width="560">
 
 <details><summary>HTML details</summary>Hidden text <script>alert('xss')</script><img src=x onerror="alert(1)"></details>
 
