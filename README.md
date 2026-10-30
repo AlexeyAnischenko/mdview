@@ -27,7 +27,7 @@ server) a path on your disk.
 
 | Where the viewer runs | Example | Local files on your disk |
 |---|---|---|
-| **Online** (GitHub Pages) | `https://alexeyanischenko.github.io/mdview/mdview.html?file=https://raw.githubusercontent.com/<user>/<repo>/<branch>/README.md` | drag & drop or **Open…** only |
+| **Online** (GitHub Pages) | [`https://alexeyanischenko.github.io/mdview/mdview.html?file=https://raw.githubusercontent.com/AlexeyAnischenko/csvview/main/README.md`](https://alexeyanischenko.github.io/mdview/mdview.html?file=https://raw.githubusercontent.com/AlexeyAnischenko/csvview/main/README.md) | drag & drop or **Open…** only |
 | **Local server** (`mdview.cmd`) | `mdview.cmd C:\docs\notes.md` → `http://127.0.0.1:8765/?file=C:\docs\notes.md` | yes, by path |
 | **Double-clicked** `mdview.html` | `file:///…/mdview.html` | drag & drop or **Open…** only |
 | Chrome with file access | see below | yes, by path |
