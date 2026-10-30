@@ -67,6 +67,10 @@ Library versions are pinned at the top of `build.mjs`; downloads are cached in `
 committed). The build also writes [`THIRD-PARTY-NOTICES.md`](THIRD-PARTY-NOTICES.md) and embeds the
 same text in `mdview.html`. `test/` holds a sample document that exercises every feature.
 
+## License
+
+mdview is released under the [MIT License](LICENSE) — provided as is, without warranty of any kind.
+
 ## Third-party software
 
 mdview.html bundles marked, marked-footnote, DOMPurify, highlight.js, KaTeX, Mermaid,
